@@ -45,7 +45,8 @@ SELECT
     posts.id, posts.created_at, posts.content,
     (SELECT COUNT(*) FROM likes WHERE likes.post_id = posts.id) AS likes,
     (SELECT COUNT(*) FROM dislikes WHERE dislikes.post_id = posts.id) AS dislikes,
-    (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments
+    (SELECT COUNT(*) FROM comments WHERE comments.post_id = posts.id) AS comments,
+    comment_user.name AS comment_user, comments.content AS comment_content, comments.created_at AS comment_created_at
 FROM posts
 LEFT JOIN likes 
     ON likes.post_id = posts.id
@@ -53,5 +54,7 @@ LEFT JOIN dislikes
     ON dislikes.post_id = posts.id
 LEFT JOIN comments 
     ON comments.post_id = posts.id
-WHERE posts.author_id = 1
+LEFT JOIN users AS comment_user
+    ON comment_user.id = comments.user_id
+WHERE posts.author_id = 2
 GROUP BY posts.id;

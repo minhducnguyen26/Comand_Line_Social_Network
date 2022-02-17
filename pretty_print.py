@@ -112,8 +112,7 @@ def user_post_template(post_author, post, comment_list):
     show_user_photo_and_name(post_author)
     print("")
     print("ID: " + str(post[0]))
-    print("Content: ")
-    print("     " + post[2])
+    print("Content: " + post[2])
     print("Created At: " + post[1])
     print("Likes: " + str(post[3]))
     print("Dislikes: " + str(post[4]))
@@ -133,6 +132,9 @@ def user_post_template(post_author, post, comment_list):
                 print("       Created At: " + str(comment[2]))
     else:
         print("No comments yet.")
+
+    print("")
+    print("=========================================================")
     
 def show_view_self_posts_menu():
     print("""
